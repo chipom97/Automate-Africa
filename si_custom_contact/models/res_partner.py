@@ -10,9 +10,5 @@ class crm_portal(models.Model):
 
 	location = fields.Char(string="Location")
 	city = fields.Char(string="City")
-	customer_category = fields.Selection([
-        ('type_a', 'Type A'),
-        ('type_b', 'Type B'),
-    ], string="Customer Category")
 
 	

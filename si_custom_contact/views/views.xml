@@ -34,4 +34,42 @@
             </xpath>
         </field>
     </record>
+    <!-- Kanban View for res.partner to group customers by category -->
+    <record id="view_partner_kanban" model="ir.ui.view">
+        <field name="name">res.partner.kanban</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div t-attf-class="o_kanban_record oe_kanban_#{record.customer_category.raw_value}">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="record.image_url.raw_value" alt="Partner Image"/>
+                                </div>
+                                <div class="o_kanban_details">
+                                    <strong><field name="name"/></strong>
+                                    <div><field name="customer_category"/></div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Action to make the Kanban view available -->
+    <record id="action_partner_kanban" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_partner_kanban"/>
+    </record>
+
+    <!-- Adding the Kanban action to the menu -->
+    <menuitem id="menu_partner_kanban"
+              name="Partners Kanban"
+              parent="contacts.menu_contacts"
+              action="action_partner_kanban"/>
 </odoo>

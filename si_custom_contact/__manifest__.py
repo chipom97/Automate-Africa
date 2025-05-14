@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Custom Charity CRM',
+    'name': 'SI Custom Contact',
     'version': '17.0',
-    'author': 'Automate Africa',
-    'depends': ['contacts', 'crm'],
+    'author': 'SooRwa Infotech',
+    'depends': ['contacts','account'],
     'data': [
       'views/views.xml',
     ],

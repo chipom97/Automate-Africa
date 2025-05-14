@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="inherit_contact_view_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/group/group/field[@name='vat']" position="after">
+                <field name="location"/>
+                <field name="city"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[@name='sales_purchases']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[@name='internal_notes']" position="after">
+               <page name="donation_detail" string="Donation Details">
+               </page>
+               <page name="report_detail" string="Report Details">
+               </page>
+            </xpath>
+<!--            <xpath expr="/form/sheet/notebook/page[@name='accounting']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+        </field>
+
+    </record>
+    <record id="inherit_account_view_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/notebook/page[@name='accounting']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

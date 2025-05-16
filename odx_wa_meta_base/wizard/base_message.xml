@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="wizard_whatsapp_base_message_form_view" model="ir.ui.view">
+        <field name="name">wizard.whatsapp.base.message.form</field>
+        <field name="model">wizard.whatsapp.base.message</field>
+        <field name="arch" type="xml">
+            <form>
+                <div invisible ="partner_ids == False" class="alert alert-info" role="alert"
+                     style="margin-bottom:0px;">
+                    <field name="session_preview" readonly="1"/>
+                </div>
+                <br/>
+
+                <group>
+                    <group>
+                        <div>
+                            <p style="width:450px;">
+                                <label for="message_mode"/>
+                                <field name="message_mode"
+                                       readonly ="(session_started == False),(message_mode == 'template')"
+                                       widget="radio" options="{'horizontal': True}"/>
+                            </p>
+
+                            <p style="width:450px;">
+                                <label for="partner_ids" style="font-weight:bold;" string="Recipients"/>
+                                <field name="partner_ids" widget="many2many_tags" required="1"
+                                       options="{'no_create':True}"/>
+                                <field name="has_params" invisible="1"/>
+                                <field name="session_started" invisible="1"/>
+                                <field name="header_has_params" invisible="1"/>
+                            </p>
+                            <br/>
+                            <p>
+                                <field name="model_name" invisible="1"/>
+                            </p>
+
+                            <p style="width:450px;">
+                                <label for="template" style="font-weight:bold;" string="Template"
+                                       invisible ="message_mode != 'template'"/>
+                                <field name="template"
+                                       invisible ="message_mode != 'template'"
+                                      required ="message_mode == 'template'"
+                                       domain="[('state', '=', 'APPROVED'),'|',('model_id','=',False),('model_id.model','=',model_name)]"
+                                       placeholder="Select a Template" options="{'no_create':True}"/>
+                            </p>
+
+                            <p style="width: 650px;">
+                                <label for="text_box" style="font-weight:bold;" string="Text Message"
+                                       invisible = " message_mode != 'session'"/>
+                                <field name="text_box"
+                                       invisible ="message_mode != 'session'"
+                                       required ="message_mode == 'session'"
+                                       placeholder="Send Text Message....." style="width:100%;"/>
+                            </p>
+
+                            <field name="line_sequence" invisible="1"/>
+                            <field name="media_id" invisible="1"/>
+
+                            <br/>
+                            <field name="parameter_ids" invisible = "has_params == False"
+                                   style="width:450px;" context="{'line_sequence':line_sequence}">
+                                <tree editable="bottom" create="true">
+                                    <field name="parameter_no"/>
+                                    <field name="value"/>
+                                </tree>
+                            </field>
+
+                            <br/>
+                            <field name="message" invisible="1"/>
+                            <br/>
+                            <field name="template_id" invisible="1"/>
+
+                            <field name="template_name" invisible="1"/>
+                            <field name="template_body" invisible="1"/>
+                            <field name="header_type" invisible="1"/>
+
+                            <field name="attachment_name" invisible="1"/>
+                            <p invisible ="header_select not in ['document','image','video']">
+                                <span>Attachment</span>
+                                <i class="fa fa-question-circle" style="padding-left:5px; color: #B0B0B0;"
+                                   title="For attaching a file to an template message.">
+                                </i>
+
+                            </p>
+
+                            <field name="attachment"
+                                   invisible ="header_select not in  ['document','image','video']"
+                                   required ="header_select in ['document','image','video']"
+                                   string="Attach a file" nolabel="1"
+                                   colspan="2" filename="attachment_name"/>
+                            <label for="header_param" style="font-weight:bold;" string="Header Parameter"
+                                   invisible ="header_has_params == False"/>
+                            <field name="header_param" invisible ="header_has_params == False"
+                                   placeholder="Header parameter..."/>
+
+                            <p style="padding-top:10px;"
+                               invisible ="header_select not in ['document','image','video']">
+                                <span>Header Type</span>
+                                <i class="fa fa-question-circle" style="padding-left:5px; color: #B0B0B0;"
+                                   title="Header type for the template.">
+                                </i>
+                                <field name="header_select" invisible="0" string="Header Media Type"/>
+                            </p>
+
+                        </div>
+                    </group>
+
+                    <group>
+                        <field name="html_preview" nolabel="1" readonly="1"/>
+                    </group>
+                </group>
+
+                <footer>
+                    <button class="oe_highlight" name="action_send" type="object"><i class="fa fa-whatsapp"/> SEND</button>
+                    or
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="action_chatter_wizard" model="ir.actions.act_window">
+        <field name="name">Send Message to base message</field>
+        <field name="res_model">wizard.whatsapp.base.message</field>
+        <field name="view_id" ref="odx_wa_meta_base.wizard_whatsapp_base_message_form_view"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click here to message
+            </p>
+        </field>
+    </record>
+</odoo>

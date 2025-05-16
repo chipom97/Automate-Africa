@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_odx_whatsapp_template,access_odx_whatsapp_template,model_odx_whatsapp_template,,1,1,1,1
+access_odx_whatsapp_configuration,access_odx_whatsapp_configuration,model_odx_whatsapp_configuration,,1,1,1,1
+access_wizard_whatsapp_base_message,access_wizard_whatsapp_base_message,model_wizard_whatsapp_base_message,,1,1,1,1
+odx_whatsapp_base_message.access_wizard_base_message_paramline,access_wizard_base_message_paramline,model_wizard_base_message_paramline,,1,1,1,1
+access_wizard_message_preview,wizard.message.preview,model_wizard_message_preview,,1,1,1,1
+access_odx_whatsapp_configuration_line,odx.whatsapp.configuration.line,model_odx_whatsapp_configuration_line,,1,1,1,1
+access_odx_whatsapp_template_ir_model,access_odx_whatsapp_template_ir_model,base.model_ir_model,odx_wa_meta_base.users,1,1,1,1
+
+
+

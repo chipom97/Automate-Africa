@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="view_crm_lead_form_custom" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.custom</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="/form/sheet/group/group/field[@name='partner_name']" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+
+			<xpath expr="/form/sheet/group/group/field[@name='email_cc']" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+
+			<xpath expr="/form/sheet/group/group/field[@name='function']" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+
+			<xpath expr="/form/sheet/group/group/field[@name='priority']" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+
+			<xpath expr="/form/sheet/group/group/field[@name='website']" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+
+			<!-- Hide tags and sales-->
+
+			<xpath expr="//field[@name='tag_ids']" position="attributes">
+          		<attribute name="invisible">1</attribute>
+        	</xpath>
+			<xpath expr="//field[@name='user_id']" position="attributes">
+          		<attribute name="invisible">1</attribute>
+        	</xpath>
+
+			<xpath expr="/form/sheet/group/group/field[@name='team_id']" position="attributes">
+				<attribute name="invisible">1</attribute>
+			</xpath>
+
+			<xpath expr="/form/sheet/group/group/field[@name='partner_id']" position="after">
+				<field name="incident_date"/>
+				<field name="relationship"/>
+				<field name="id_number"/>
+            </xpath>
+
+            <xpath expr="/form/sheet/notebook/page[@name='internal_notes']" position="after">
+               <page name="description" string="Description of Incident">
+			   <field name="description"/>
+               </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

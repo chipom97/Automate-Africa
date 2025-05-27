@@ -9,7 +9,7 @@ class CrmLead(models.Model):
     description = fields.Text(string="Description of Incident")
     """
     network_issue = fields.Selection([
-        ('No signal', 'No signal'),
-        ('Call drops', 'Call drops'),
-            ('Poor call quality','Poor call quality')
-    ], string='Network Issue')
+    ('0_no_signal', 'No signal'),
+    ('1_call_drops', 'Call drops'),
+    ('2_poor_call_quality', 'Poor call quality'),
+], string='Network Issue')

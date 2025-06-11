@@ -3,6 +3,7 @@ from odoo import models, fields
 class CustomPartner(models.Model):
     _inherit = 'res.partner'
 
+    phone_number = fields.Char(string='Phone Number')
     sim_serial_no = fields.Char(string='SIM Serial No.')
     network_provider = fields.Selection(
         selection=[

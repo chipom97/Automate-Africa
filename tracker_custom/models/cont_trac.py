@@ -2,8 +2,7 @@ from odoo import models, fields
 
 class CustomPartner(models.Model):
     _inherit = 'res.partner'
-    
-    network_issue = fields.Char(string="Network Issue")
+
     sim_serial_no = fields.Char(string='SIM Serial No.')
     network_provider = fields.Selection(
         selection=[

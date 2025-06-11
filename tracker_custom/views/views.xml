@@ -7,10 +7,9 @@
         <field name="arch" type="xml">
 
             <!-- Add custom fields after the existing 'phone' field -->
-            <xpath expr="//field[@name='phone']" position="after">
+            <xpath expr="/form/sheet/group/group/field[@name='vat']" position="after">
 
                 <group string="Tracking Info" col="2">
-                    <field name="phone_number"/>
                     <field name="sim_serial_no"/>
                     <field name="network_provider"/>
                     <field name="activation_date"/>

@@ -1,27 +1,29 @@
+<!-- views/res_partner_views.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="view_partner_form_custom" model="ir.ui.view">
-        <field name="name">res.partner.form.inherit.custom</field>
+    <record id="view_partner_form_custom_sim" model="ir.ui.view">
+        <field name="name">res.partner.form.sim.dropdown</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="before">
 
-            <xpath expr="/form/sheet/group/group/field[@name='vat']" position="before">
-                <field name="activation_date"/>
-                <field name="device_imei"/>
-                <field name="device_placement"/>
-                <field name="phone_number"/>
-                <field name="sim_serial_no"/>
-                <field name="remarks"/>
+                <!-- Dropdown for SIM -->
+                <field name="selected_sim_id" options="{'no_create': True}" context="{'default_partner_id': active_id}"/>
+
+                <!-- Display-only related fields -->
+                <field name="sim_activation_date" readonly="1"/>
+                <field name="sim_device_imei" readonly="1"/>
+                <field name="sim_device_placement" readonly="1"/>
+                <field name="sim_phone_number" readonly="1"/>
+                <field name="sim_serial_no" readonly="1"/>
+                <field name="sim_remarks" readonly="1"/>
+                <field name="sim_device_model" readonly="1"/>
+                <field name="sim_vehicle_reg_no" readonly="1"/>
+                <field name="sim_network_provider" readonly="1"/>
+                <field name="sim_reminder" readonly="1"/>
+
             </xpath>
-
-            <xpath expr="/form/sheet/group/group/field[@name='website']" position="after">
-                <field name="device_model"/>
-                <field name="vehicle_reg_no"/>
-                <field name="network_provider"/>
-                <field name="reminder"/>
-            </xpath>
-
         </field>
     </record>
 </odoo>

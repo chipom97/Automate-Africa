@@ -1,14 +1,10 @@
 {
-    'name': 'Contacts_Tracker',
-    'version': '17.0',
-    'author': 'Automate Africa',
-    'depends': ['contacts'],
+    'name': 'SIM Card Extension',
+    'version': '1.0',
+    'depends': ['base'],
     'data': [
-      'views/views.xml',
+        'views/res_partner_views.xml',
     ],
-
-    'sequence': 1,
     'installable': True,
-    'application': True,
-
+    'application': False,
 }

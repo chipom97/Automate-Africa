@@ -1,1 +1,2 @@
-from . import cont_trac
+from . import sim_card
+from . import res_partner
